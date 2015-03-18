@@ -11,13 +11,14 @@ struct concesionario {
 
 struct concesionario *curso_concesionario_alloc(void)
 {
-	struct concesionario *con;
+	struct concesionario *con = malloc(sizeof(struct concesionario));
+	memset(con, 0, (sizeof(struct concesionario)));
 
-	con = malloc(sizeof(struct concesionario));
 	if (con ==  NULL)
 		return NULL;
 
 	INIT_LIST_HEAD(&con->garaje);
+	con->flags |= (1 << CURSO_CONCESIONARIO_ATTR_NUM_COCHES);
 
 	return con;
 }
@@ -142,7 +143,7 @@ const char *curso_concesionario_attr_get_str(struct concesionario *con,
 }
 
 struct coche *curso_concesionario_attr_get_coche(struct concesionario *con,
-					         uint16_t attr, uint32_t pos)
+						 uint16_t attr, uint32_t pos)
 {
 	return (struct coche *)curso_concesionario_attr_get_data(con, attr,
 								 pos);

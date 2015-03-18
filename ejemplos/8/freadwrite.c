@@ -11,13 +11,18 @@ int main()
 	if (fp == NULL)
 		return -1;
 
-	fwrite(c, strlen(c) + 1, 1, fp);
+	if ((fwrite(c, strlen(c) + 1, 1, fp)) != 1)
+		return -1;
 
 	rewind(fp);
 
-	fread(buffer, strlen(c) + 1, 1, fp);
+	if ((fread(buffer, strlen(c) + 1, 1, fp)) != 1)
+		return -1;
+
 	printf("%s\n", buffer);
 
-	fclose(fp);
+	if (fclose(fp))
+		return -1;
+
 	return 0;
 }

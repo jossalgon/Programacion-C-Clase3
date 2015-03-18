@@ -25,6 +25,9 @@ int main(void)
 	genera_mensaje(file);
 
 	code = malloc(1000);
+	if (code == NULL)
+		return -1;
+
 	while ((c = fgetc(file)) != EOF)
 	{
 		code[n++] = (char) c;
@@ -34,5 +37,8 @@ int main(void)
 	printf("El texto leido es %s\n", code);
 
 	free(code);
+	if (fclose(file))
+		return -1;
+
 	return 0;
 }

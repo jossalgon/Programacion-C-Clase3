@@ -134,7 +134,7 @@ static int test4(void)
 	printf("ANTES:\n%s", info);
 
 	gestor_tarea_attr_unset_tarea(g4, 1);
-	//En la posición 1 estaba t2 "Antivirus"
+	// En la posición 1 estaba t2 "Antivirus"
 	// assert(gestor_tarea_attr_get_tarea(g4, 1) != t2);
 
 	gestor_tarea_snprintf(info, sizeof(info), g4);
